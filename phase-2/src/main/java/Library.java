@@ -4,7 +4,7 @@ public class Library {
     public HashMap<String, Book> books;
     public HashMap<String, Book> purchasedBooks;
     public HashMap<String, Book> borrowedBooks;
-    private HashMap<String, User> users;
+    public HashMap<String, User> users;
     public Library() {
         books = new HashMap<>();
         purchasedBooks = new HashMap<>();

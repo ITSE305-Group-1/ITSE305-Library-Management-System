@@ -60,4 +60,34 @@ public class libraryTest {
         // Check if the book was deleted
         assertFalse(lib.books.containsKey("1234567890"));
     }
+    @Test
+    public void testAuthenticate() {
+        // Create a new Library instance
+        Library library = new Library();
+
+        // Add a user to the library
+        library.users.put("username", new User("username", "password"));
+
+        // Test valid authentication
+        assertTrue(library.authenticate("username", "password"));
+
+        // Test invalid authentication with wrong password
+        assertFalse(library.authenticate("username", "wrong_password"));
+
+        // Test invalid authentication with non-existent username
+        assertFalse(library.authenticate("non_existent_username", "password"));
+    }
+
+    @Test
+    public void testCheckoutBook() {
+        // Create a new Library instance
+        Library library = new Library();
+
+        // Add a book to the library
+        library.addBook("1234567890", "Book Title", "Author Name");
+
+        // Try to check out the same book again
+        assertFalse(library.authenticate("username", "password")); // Assuming this user exists
+        library.checkoutBook(library.books.get("1234567890"),"username");
+    }
 }
