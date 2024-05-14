@@ -23,6 +23,11 @@ public class Library {
     }
     //Move the book to purchased books map
     public void purchase(String isbn, String userName ){
+        //Make sure the book is in the library, if not throw an error
+        if (!books.containsKey(isbn)) {
+            System.out.println("Error: This book does not exist in the library.");
+            throw new RuntimeException("Book not found: ISBN " + isbn);
+        }
         checkoutBook(books.get(isbn), userName);
         Book book = books.get(isbn);
         purchasedBooks.put(isbn, book);
@@ -30,6 +35,11 @@ public class Library {
     }
     //Move the book to borrowed books map
     public void borrow(String isbn ){
+        //Make sure the book is in the library, if not throw an error
+        if (!books.containsKey(isbn)) {
+            System.out.println("Error: This book does not exist in the library.");
+            throw new RuntimeException("Book not found: ISBN " + isbn);
+        }
         Book book = books.get(isbn);
         borrowedBooks.put(isbn, book);
         deleteBook(isbn);
@@ -68,11 +78,6 @@ public class Library {
         } else {
             System.out.println("Book not available for checkout");
         }
-    }
-    // Method for user authentication
-    public boolean authenticate(String username, String password) {
-        User user = users.get(username);
-        return user != null && user.getPassword().equals(password) && user.getUsername().equals(username);
     }
 
 
