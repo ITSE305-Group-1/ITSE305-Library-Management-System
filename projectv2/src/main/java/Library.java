@@ -59,6 +59,16 @@ public class Library {
                     results.add(book);
                 }
             }
+        } else if (!Objects.equals(title, "") && !Objects.equals(isbn, "")) {
+            Book book = books.get(isbn);
+            if (book != null) {
+                results.add(book);
+            }
+            for (Book book : books.values()) {
+                if (calculateTitleMatch(book.getTitle(), title) >= 0.3) {
+                    results.add(book);
+                }
+            }
         }
         return results.toArray(new Book[0]);
     }
